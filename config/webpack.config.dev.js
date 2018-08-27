@@ -1,10 +1,10 @@
 'use strict'
 /*eslint-disable */
-const autoprefixer = require('../../../../../Library/Caches/typescript/2.9/node_modules/@types/autoprefixer')
+const autoprefixer = require('autoprefixer')
 const path = require('path')
-const webpack = require('../../../../../Library/Caches/typescript/2.9/node_modules/@types/webpack')
-const HtmlWebpackPlugin = require('../../../../../Library/Caches/typescript/2.9/node_modules/@types/html-webpack-plugin')
-const CaseSensitivePathsPlugin = require('../../../../../Library/Caches/typescript/2.9/node_modules/@types/case-sensitive-paths-webpack-plugin')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin')
 const eslintFormatter = require('react-dev-utils/eslintFormatter')

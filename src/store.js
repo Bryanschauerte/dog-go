@@ -6,6 +6,8 @@ import {
 import {
 	uiState
 } from './uiState/reducer'
+import home from './home/state'
+
 const logger = store => next => action => {
 	/*eslint-disable */
   console.log('dispatching', action)
@@ -16,6 +18,7 @@ const logger = store => next => action => {
 	return result
 }
 const root = combineReducers({
-	uiState
+	uiState,
+	home
 })
 export const store = createStore(root, applyMiddleware(logger))

@@ -1,11 +1,11 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { ConnectedHome } from './home/Home'
+import Home from './home/Home'
 
 const routes = [
 	{
 		path: '/',
-		component: ConnectedHome
+		component: Home
 	}
 ]
 

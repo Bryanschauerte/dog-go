@@ -1,53 +1,45 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { RouteWithSubRoutes } from '../Routes'
-import { connect } from 'react-redux'
-import { changeUIState } from './actions'
-const subOne = () => <div>subOne</div>
-const subTwo = () => <div>subTwo</div>
-const routes = [
-	{
-		path: '/home/subOne',
-		component: subOne
-	},
-	{
-		path: '/home/subTwo',
-		component: subTwo
-	}
-]
 
-const Home = ({ changeUIStatet }) => {
+import TopDisplay from './components/topDisplay/TopDisplay'
+import { withStyles } from '@material-ui/core/styles'
+import BottomDisplay from './components/bottomDisplay/BottomDisplay'
+
+const styles = theme => ({
+	root: {
+		flexGrow: 1,
+		display: 'flex',
+		flexDirection: 'column'
+	},
+	paper: {
+		padding: theme.spacing.unit * 2,
+		textAlign: 'center',
+		color: theme.palette.text.secondary
+	}
+})
+
+const Home = ({ classes }) => {
 	return (
-		<div>
-			<h2>Tacos</h2>
-			<ul>
+		<div data-testid="homeComponent" className={classes.root}>
+			<TopDisplay />
+			<BottomDisplay />
+			{/* <ul>
 				<li>
 					<Link to="/home/subOne">SUb1</Link>
 				</li>
 				<li>
 					<Link to="/home/subTwo">sub2</Link>
 				</li>
-				<button onClick={changeUIStatet} />
-			</ul>
-
-			{routes &&
-				routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
+				<button onClick={makeStateChange} />
+			</ul> */}
 		</div>
 	)
 }
 Home.propTypes = {
 	routes: PropTypes.any,
 	dispatch: PropTypes.any,
-	changeUIStatet: PropTypes.any
+	classes: PropTypes.any
 }
-const mapStateToProps = state => {
-	return state
-}
-const mapDispatchToProps = dispatch => {
-	return { dispatch, changeUIStatet: () => dispatch(changeUIState(1)) }
-}
-export const ConnectedHome = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Home)
+
+export default withStyles(styles)(Home)
