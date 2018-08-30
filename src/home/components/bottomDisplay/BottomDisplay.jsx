@@ -7,6 +7,7 @@ import ActiveBottomChild from './components/ActiveBottomChild.jsx'
 import { connect } from 'react-redux'
 import { changeUIState } from './actions'
 import { bottomDisplay, activeView, home } from './selectors'
+import { getPeople } from './api/people'
 
 const styles = theme => ({
 	root: {
@@ -18,7 +19,12 @@ const styles = theme => ({
 })
 const stuff = [1, 2, 3, 4]
 
-export const Component = ({ classes, activeView, makeStateChange }) => {
+export const Component = ({
+	classes,
+	activeView,
+	getPeopleFun,
+	makeStateChange
+}) => {
 	return (
 		<Grid
 			data-testid="BottomDisplay"
@@ -30,7 +36,7 @@ export const Component = ({ classes, activeView, makeStateChange }) => {
 				(thing, index) =>
 					activeView === index ? (
 						<ActiveBottomChild
-							makeStateChange={() => makeStateChange(index)}
+							handleClick={() => getPeopleFun(1)}
 							key={index}
 							info={thing}
 						/>
@@ -51,7 +57,8 @@ Component.propTypes = {
 	children: PropTypes.arrayOf(PropTypes.element),
 	makeStateChange: PropTypes.func,
 	activeView: PropTypes.any,
-	classes: PropTypes.any
+	classes: PropTypes.any,
+	getPeopleFun: PropTypes.any
 }
 
 const mapStateToProps = state => {
@@ -63,7 +70,12 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-	return { dispatch, makeStateChange: index => dispatch(changeUIState(index)) }
+	return {
+		dispatch,
+		makeStateChange: index => dispatch(changeUIState(index)),
+		getPeopleFun: index =>
+			dispatch(getPeople(s => console.log(s), e => console.log(e), index)) // eslint-disable-line
+	}
 }
 
 export default connect(

@@ -1,21 +1,27 @@
 import axios from 'axios'
-import urls from './config'
 
 export default async (dispatch, config) => {
 
 	config = {
 		type: 'get',
-		url: `${urls.swapi.base}people`,
+		url: '',
 		params: {},
 		success: (s) => s,
 		fail: (f) => f,
 		...config
 
 	}
-
+	// console.log('apoi called', config, 'config') // eslint-disable-line
 	const getResults = await axios[config.type](config.url, config.params)
-	if (!getResults.data) return dispatch(config.fail(getResults))
-	return dispatch(config.success(getResults.data))
+		.catch(e => {
+			return dispatch(config.fail(e))
+		})
+
+
+	if (getResults && getResults.data) return dispatch(config.success(getResults.data))
+
+	return dispatch(config.fail(getResults))
+
 
 
 }

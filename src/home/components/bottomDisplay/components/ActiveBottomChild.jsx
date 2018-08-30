@@ -37,7 +37,7 @@ const styles = theme => ({
 	}
 })
 
-const ActiveBottomChild = ({ classes, info }) => (
+const ActiveBottomChild = ({ classes, info, handleClick }) => (
 	<div>
 		<Zoom in={true}>
 			<Card className={classes.card} data-testid="ActiveBottomChild">
@@ -58,7 +58,7 @@ const ActiveBottomChild = ({ classes, info }) => (
 					</Typography>{' '}
 				</CardContent>
 				<CardActions className={classes.title}>
-					<Button color="primary" size="small">
+					<Button onClick={handleClick} color="primary" size="small">
 						{' '}
 						Learn More{' '}
 					</Button>{' '}
@@ -70,7 +70,8 @@ const ActiveBottomChild = ({ classes, info }) => (
 
 ActiveBottomChild.propTypes = {
 	info: PropTypes.any,
-	classes: PropTypes.any
+	classes: PropTypes.any,
+	handleClick: PropTypes.func
 }
 
 export default withStyles(styles)(ActiveBottomChild)
