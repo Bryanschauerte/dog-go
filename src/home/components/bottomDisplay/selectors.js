@@ -1,10 +1,9 @@
-import {
-	prop,
-	compose
-} from 'rambda'
+import { prop, compose } from 'rambda'
 import namespace from './constants'
 
-
-export const home = (state) => prop('home', state)
+export const home = state => prop('home', state)
 export const bottomDisplay = state => prop(namespace.stateName, home(state))
-export const activeView = compose(prop('activeView'), bottomDisplay)
+export const activeTab = compose(
+	prop('activeTab'),
+	bottomDisplay
+)

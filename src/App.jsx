@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 // import logo from './logo.svg';
+
 import './App.scss'
 import { Routes } from './Routes'
 import { Provider } from 'react-redux'
@@ -16,6 +17,7 @@ class App extends Component {
 		return (
 			<MuiThemeProvider theme={customTheme}>
 				<CssBaseline />
+
 				<div className="App">
 					<Provider store={store}>
 						<Routes />

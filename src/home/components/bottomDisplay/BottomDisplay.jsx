@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
-import BottomChild from './components/BottomChild.jsx'
-import ActiveBottomChild from './components/ActiveBottomChild.jsx'
+import BottomChild from './components/BottomChild'
+import ActiveBottomChild from './components/ActiveBottomChild'
 import { connect } from 'react-redux'
 import { changeUIState } from './actions'
-import { bottomDisplay, activeView, home } from './selectors'
+import { bottomDisplay, activeTab, home } from './selectors'
 import { getPeople } from './api/people'
 
 const styles = theme => ({
@@ -21,7 +21,7 @@ const stuff = [1, 2, 3, 4]
 
 export const Component = ({
 	classes,
-	activeView,
+	activeTab,
 	getPeopleFun,
 	makeStateChange
 }) => {
@@ -34,7 +34,7 @@ export const Component = ({
 		>
 			{stuff.map(
 				(thing, index) =>
-					activeView === index ? (
+					activeTab === index ? (
 						<ActiveBottomChild
 							handleClick={() => getPeopleFun(1)}
 							key={index}
@@ -56,7 +56,7 @@ Component.displayname = 'BottomDisplay'
 Component.propTypes = {
 	children: PropTypes.arrayOf(PropTypes.element),
 	makeStateChange: PropTypes.func,
-	activeView: PropTypes.any,
+	activeTab: PropTypes.any,
 	classes: PropTypes.any,
 	getPeopleFun: PropTypes.any
 }
@@ -64,7 +64,7 @@ Component.propTypes = {
 const mapStateToProps = state => {
 	return {
 		bottomDisplay: bottomDisplay(state),
-		activeView: activeView(state),
+		activeTab: activeTab(state),
 		home: home(state)
 	}
 }

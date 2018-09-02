@@ -13,6 +13,9 @@ export default () => createMuiTheme({
 		primary: blue,
 		secondary: green
 	},
+	padding: {
+		containers: 16
+	},
 	overrides: {
 		MuiButton: {
 			root: {
